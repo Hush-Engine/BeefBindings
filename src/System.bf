@@ -6,8 +6,17 @@ using System;
 public struct SystemInfo {
 	public const int MAX_SYS_NAME = 64;
 	public char8[MAX_SYS_NAME] name;
+	public int32 registryIndex;
+
+	public this(StringView name, int32 registryIndex) {
+		this.name = "";
+		this.registryIndex = registryIndex;
+		name.CopyTo(this.name);
+	}
+
 }
 
+[Reflect(.None, ReflectImplementer=.DefaultConstructor), AlwaysInclude(AssumeInstantiated=true)]
 public interface GameSystem {
 	public void Init();
 
