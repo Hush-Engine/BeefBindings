@@ -16,7 +16,10 @@ public class SmallSystem : GameSystem {
 	/// OnRender() is called when the system should render.
 	/// @param delta Time since last frame
 	public void OnUpdate(float delta) {
-		Console.WriteLine("Small System is updating!");
+		Console.WriteLine(scope $"Small System is updating with delta time: {delta}!");
+		if (Hush.GlobalFunctions.Hush__InputManager__IsKeyDown(Hush.EKeyCode.EKeyCode_SPACE)) {
+			Console.WriteLine("Pressed key on Beef!");
+		}
 	}
 
 	/// OnFixedUpdate() is called when the system should update its state.

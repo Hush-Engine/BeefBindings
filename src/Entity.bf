@@ -12,6 +12,14 @@ public struct Entity { //: BindingCompletenessCheck<Hush.Entity, Entity> {
 
 	private const int MAX_COMP_NAME = 64;
 
+	public this() {
+		this.m_innerEntity = .();
+	}
+
+	public this(Hush.Entity innerEntity) {
+		this.m_innerEntity = innerEntity;
+	}
+
 	private uint64 RegisterCompIfNeeded<T>() {
 		let compName = scope String(MAX_COMP_NAME);
 		var componentDesc = Hush.ComponentTraits.ComponentInfo();

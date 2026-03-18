@@ -9,8 +9,10 @@ public struct HushFuncPtrTable {
 	public function bool(Entity* self,uint64) HushFuncPtr_Hush__Entity__HasComponentRaw;
 	public function void*(Entity* self,uint64 ,bool*) HushFuncPtr_Hush__Entity__EmplaceComponentRaw;
 	public function bool(Entity* self,uint64) HushFuncPtr_Hush__Entity__RemoveComponentRaw;
+	public function void(Entity* self,uint64 ,bool) HushFuncPtr_Hush__Entity__SetComponentActiveRaw;
 	public function void(Entity* self,Entity*) HushFuncPtr_Hush__Entity__AddChild;
 	public function int32(Entity* self) HushFuncPtr_Hush__Entity__GetChildCount;
+	public function void(Entity* self,Entity* ,Entity*) HushFuncPtr_Hush__Entity__AddRelationship;
 	public function uint64(Entity* self) HushFuncPtr_Hush__Entity__GetId;
 	public function bool(RawQuery.QueryIterator* self) HushFuncPtr_Hush__RawQuery__QueryIterator__Next;
 	public function void(RawQuery.QueryIterator* self) HushFuncPtr_Hush__RawQuery__QueryIterator__Skip;
@@ -27,4 +29,11 @@ public struct HushFuncPtrTable {
 	public function uint64(void* self,ComponentTraits.ComponentInfo*) HushFuncPtr_Hush__Scene__RegisterComponentRaw;
 	public function RawQuery(void* self,uint64* ,uint64 componentsSize,RawQuery.ECacheMode) HushFuncPtr_Hush__Scene__CreateRawQuery;
 	public function void*(void* self) HushFuncPtr_Hush__HushEngine__GetScene;
+	public function bool(EKeyCode) HushFuncPtr_Hush__InputManager__IsKeyDown;
+	public function bool(EKeyCode) HushFuncPtr_Hush__InputManager__IsKeyDownThisFrame;
+	public function bool(EKeyCode) HushFuncPtr_Hush__InputManager__IsKeyUp;
+	public function bool(EKeyCode) HushFuncPtr_Hush__InputManager__IsKeyHeld;
+	public function bool(EMouseButton) HushFuncPtr_Hush__InputManager__GetMouseButtonPressed;
+	public function bool(char8*) HushFuncPtr_Hush__InputManager__FetchCharThisFrame;
+	public function void(ECursorLockMode) HushFuncPtr_Hush__InputManager__SetCursorLock;
 }

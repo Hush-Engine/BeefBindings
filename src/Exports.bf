@@ -80,7 +80,40 @@ struct SystemRegistryAttribute : Attribute, IComptimeTypeApply
 [SystemRegistry]
 public static class SystemRegistryImpl {}
 
+public class EngineDependencies {
+
+	public static EngineDependencies Instance {
+		get {
+			if (s_instance == null) {
+				s_instance = new EngineDependencies();
+			}
+			return s_instance;
+		}
+	}
+
+	private static EngineDependencies s_instance = null;
+
+	public Hush.HushFuncPtrTable* FunctionPointerTable {
+		get => this.m_functionPtrTable;
+		private set {
+			this.m_functionPtrTable = value;
+		}
+	}
+
+	private Hush.HushFuncPtrTable* m_functionPtrTable;
+
+	public void ProvisionFunctionPtrTable(Hush.HushFuncPtrTable* table) {
+		this.m_functionPtrTable = table;
+	}
+
+}
+
 public static class Exports {
+
+	[Export, CLink]
+	public static void StartScriptingConnection(Hush.HushFuncPtrTable* table) {
+		EngineDependencies.Instance.ProvisionFunctionPtrTable(table);
+	}
 
 	[Export, CLink]
 	public static uint8* InstantiateSystem(SystemInfo* systemInfo) {
@@ -143,49 +176,54 @@ public static class Exports {
 	[Export, CLink]
 	public static void CallSystemOnUpdate(void* systemHandle, float delta) {
 		Debug.Assert(systemHandle != null, "Cannot call OnUpdate on null system!");
-		var objectHandle = (Object*)systemHandle;
-		var systemImpl = (GameSystem)(*objectHandle);
+		Object objectHandle = Internal.UnsafeCastToObject(systemHandle);
+		var systemImpl = (GameSystem)objectHandle;
 		systemImpl.OnUpdate(delta);
 	}
 
 	[Export, CLink]
 	public static void CallSystemOnFixedUpdate(void* systemHandle, float delta) {
 		Debug.Assert(systemHandle != null, "Cannot call OnFixedUpdate on null system!");
-		var objectHandle = (Object*)systemHandle;
-		var systemImpl = (GameSystem)(*objectHandle);
+		Object objectHandle = Internal.UnsafeCastToObject(systemHandle);
+		var systemImpl = (GameSystem)objectHandle;
 		systemImpl.OnFixedUpdate(delta);
 	}
 	
 	[Export, CLink]
 	public static void CallSystemOnShutdown(void* systemHandle) {
 		Debug.Assert(systemHandle != null, "Cannot call OnShutdown on null system!");
-		var objectHandle = (Object*)systemHandle;
-		var systemImpl = (GameSystem)(*objectHandle);
+		Object objectHandle = Internal.UnsafeCastToObject(systemHandle);
+		var systemImpl = (GameSystem)objectHandle;
 		systemImpl.OnShutdown();
 	}
 	
 	[Export, CLink]
 	public static void CallSystemOnRender(void* systemHandle) {
 		Debug.Assert(systemHandle != null, "Cannot call OnRender on null system!");
-		var objectHandle = (Object*)systemHandle;
-		var systemImpl = (GameSystem)(*objectHandle);
+		Object objectHandle = Internal.UnsafeCastToObject(systemHandle);
+		var systemImpl = (GameSystem)objectHandle;
 		systemImpl.OnRender();
 	}
 
 	[Export, CLink]
 	public static void CallSystemOnPreRender(void* systemHandle) {
 		Debug.Assert(systemHandle != null, "Cannot call OnPreRender on null system!");
-		var objectHandle = (Object*)systemHandle;
-		var systemImpl = (GameSystem)(*objectHandle);
+		Object objectHandle = Internal.UnsafeCastToObject(systemHandle);
+		var systemImpl = (GameSystem)objectHandle;
 		systemImpl.OnPreRender();
 	}
 	
 	[Export, CLink]
 	public static void CallSystemOnPostRender(void* systemHandle) {
 		Debug.Assert(systemHandle != null, "Cannot call OnPostRender on null system!");
-		var objectHandle = (Object*)systemHandle;
-		var systemImpl = (GameSystem)(*objectHandle);
+		Object objectHandle = Internal.UnsafeCastToObject(systemHandle);
+		var systemImpl = (GameSystem)objectHandle;
 		systemImpl.OnPostRender();
+	}
+
+	[Export, CLink]
+	public static void DisposeScriptingConnection() {
+		delete EngineDependencies.Instance;
 	}
 	
 	
