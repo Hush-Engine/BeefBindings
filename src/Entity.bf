@@ -21,18 +21,53 @@ public struct Entity { //: BindingCompletenessCheck<Hush.Entity, Entity> {
 	}
 
 	private uint64 RegisterCompIfNeeded<T>() {
-		let compName = scope String(MAX_COMP_NAME);
-		var componentDesc = Hush.ComponentTraits.ComponentInfo();
-		componentDesc.size = (uint64)sizeof(T);
-		componentDesc.alignment = (uint64)alignof(T);
-		componentDesc.name = compName.CStr();
+		let buff = scope String(MAX_COMP_NAME);
 
-		return this.m_innerEntity.RegisterComponentRaw(&componentDesc);		
+		void* scene = Hush.HushEngine.GetScene(EngineDependencies.Instance.Engine);
+		Hush.ComponentTraits.ComponentInfo compInfo = TypeUtils.GetComponentInfo<T>(buff);
+
+		uint64 term = 0;
+		term = Hush.Scene.Lookup(scene, buff.CStr(), (uint64)buff.Length);
+
+		if (term == 0) {
+			term = Hush.Scene.RegisterComponentRaw(scene, &compInfo);
+		}
+		
+		return term;
 	}
-	
+
+	private uint64 RegisterCompIfNeeded<T>(StringView name) {
+		let buff = scope String(MAX_COMP_NAME);
+		buff.Append(name);
+
+		void* scene = Hush.HushEngine.GetScene(EngineDependencies.Instance.Engine);
+		
+		uint64 term = 0;
+		term = Hush.Scene.Lookup(scene, buff.CStr(), (uint64)buff.Length);
+
+		if (term == 0) {
+			Hush.ComponentTraits.ComponentInfo compInfo = TypeUtils.GetComponentInfo<T>(buff, true);
+			term = Hush.Scene.RegisterComponentRaw(scene, &compInfo);
+		}
+		
+		return term;
+	}
+
 	public void AddComponent<T>() {
 		uint64 compId = this.RegisterCompIfNeeded<T>();
 		this.m_innerEntity.AddComponentRaw(compId);
+	}
+
+	public T* GetComponent<T>() {
+		uint64 compId = this.RegisterCompIfNeeded<T>();
+		void* compMut = this.m_innerEntity.GetComponentRaw(compId);
+		return (T*)compMut;
+	}
+
+	public T* GetComponentAsName<T>(StringView name) {
+		uint64 compId = this.RegisterCompIfNeeded<T>(name);
+		void* compMut = this.m_innerEntity.GetComponentRaw(compId);
+		return (T*)compMut;
 	}
 
 	public void AddChild(ref Entity entity) {

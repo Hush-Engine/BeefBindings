@@ -100,10 +100,19 @@ public class EngineDependencies {
 		}
 	}
 
-	private Hush.HushFuncPtrTable* m_functionPtrTable;
+	public void* Engine {
+		get => this.m_engine;
+		private set {
+			this.m_engine = value;
+		}
+	}
 
-	public void ProvisionFunctionPtrTable(Hush.HushFuncPtrTable* table) {
+	private Hush.HushFuncPtrTable* m_functionPtrTable;
+	private void* m_engine;
+
+	public void Provision(Hush.HushFuncPtrTable* table, void* engine) {
 		this.m_functionPtrTable = table;
+		this.m_engine = engine;
 	}
 
 }
@@ -111,8 +120,8 @@ public class EngineDependencies {
 public static class Exports {
 
 	[Export, CLink]
-	public static void StartScriptingConnection(Hush.HushFuncPtrTable* table) {
-		EngineDependencies.Instance.ProvisionFunctionPtrTable(table);
+	public static void StartScriptingConnection(Hush.HushFuncPtrTable* table, void* engine) {
+		EngineDependencies.Instance.Provision(table, engine);
 	}
 
 	[Export, CLink]
