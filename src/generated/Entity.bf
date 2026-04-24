@@ -6,6 +6,10 @@ public struct Entity {
 	public char8[8] m_member0;
 	public char8[8] m_member1;
 
+	public bool IsAlive() {
+		return BeefHush.EngineDependencies.Instance.FunctionPointerTable.HushFuncPtr_Hush__Entity__IsAlive(&this);
+	}
+
 	public uint64 GetId() {
 		return BeefHush.EngineDependencies.Instance.FunctionPointerTable.HushFuncPtr_Hush__Entity__GetId(&this);
 	}
@@ -30,8 +34,8 @@ public struct Entity {
 		return BeefHush.EngineDependencies.Instance.FunctionPointerTable.HushFuncPtr_Hush__Entity__RemoveComponentRaw(&this, componentId);
 	}
 
-	public void* EmplaceComponentRaw(uint64 componentId, bool* isNew) {
-		return BeefHush.EngineDependencies.Instance.FunctionPointerTable.HushFuncPtr_Hush__Entity__EmplaceComponentRaw(&this, componentId, isNew);
+	public void* EmplaceComponentRaw(uint64 componentId, uint64 componentSize, bool* isNew) {
+		return BeefHush.EngineDependencies.Instance.FunctionPointerTable.HushFuncPtr_Hush__Entity__EmplaceComponentRaw(&this, componentId, componentSize, isNew);
 	}
 
 	public bool HasComponentRaw(uint64 componentId) {

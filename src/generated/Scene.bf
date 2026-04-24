@@ -6,8 +6,8 @@ public static class Scene {
 		return BeefHush.EngineDependencies.Instance.FunctionPointerTable.HushFuncPtr_Hush__Scene__CreateRawQuery(self, componentsData, componentsSize, cacheMode);
 	}
 
-	public static uint64 Lookup(void* self, char8* tagData, uint64 tagSize) {
-		return BeefHush.EngineDependencies.Instance.FunctionPointerTable.HushFuncPtr_Hush__Scene__Lookup(self, tagData, tagSize);
+	public static uint64 Lookup(void* self, char8* keyData, uint64 keySize) {
+		return BeefHush.EngineDependencies.Instance.FunctionPointerTable.HushFuncPtr_Hush__Scene__Lookup(self, keyData, keySize);
 	}
 
 	public static uint64 RegisterComponentRaw(void* self, ComponentTraits.ComponentInfo* desc) {
@@ -20,6 +20,18 @@ public static class Scene {
 
 	public static void RegisterComponentId(void* self, char8* nameData, uint64 nameSize, uint64 id) {
 		BeefHush.EngineDependencies.Instance.FunctionPointerTable.HushFuncPtr_Hush__Scene__RegisterComponentId(self, nameData, nameSize, id);
+	}
+
+	public static void DestroyEntity(void* self, Entity* entity) {
+		BeefHush.EngineDependencies.Instance.FunctionPointerTable.HushFuncPtr_Hush__Scene__DestroyEntity(self, entity);
+	}
+
+	public static void AddComponentObserverRaw(void* self, uint64 componentId, uint64 componentSize, EComponentObserverType observerType, function void(uint64 ,void*) callback) {
+		BeefHush.EngineDependencies.Instance.FunctionPointerTable.HushFuncPtr_Hush__Scene__AddComponentObserverRaw(self, componentId, componentSize, observerType, callback);
+	}
+
+	public static Entity CreateEntityWithKey(void* self, char8* keyData, uint64 keySize) {
+		return BeefHush.EngineDependencies.Instance.FunctionPointerTable.HushFuncPtr_Hush__Scene__CreateEntityWithKey(self, keyData, keySize);
 	}
 
 	public static Entity CreateEntityWithName(void* self, char8* nameData, uint64 nameSize) {

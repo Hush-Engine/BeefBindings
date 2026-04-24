@@ -3,14 +3,14 @@ using System;
 
 [CRepr]
 public struct ComponentTraits {
-	public const int32 EComponentOpsFlags_NoMoveAssignDtor = 32768;
-	public const int32 EComponentOpsFlags_NoMoveDtor = 16384;
-	public const int32 EComponentOpsFlags_NoMoveCtor = 8192;
-	public const int32 EComponentOpsFlags_NoCopyCtor = 4096;
-	public const int32 EComponentOpsFlags_NoMove = 2048;
-	public const int32 EComponentOpsFlags_NoCopy = 1024;
-	public const int32 EComponentOpsFlags_NoDtor = 512;
-	public const int32 EComponentOpsFlags_NoCtor = 256;
+	public const int32 EComponentOpsFlags_NoMoveAssignDtor = 262144;
+	public const int32 EComponentOpsFlags_NoMoveDtor = 131072;
+	public const int32 EComponentOpsFlags_NoMoveCtor = 65536;
+	public const int32 EComponentOpsFlags_NoCopyCtor = 32768;
+	public const int32 EComponentOpsFlags_NoMove = 16384;
+	public const int32 EComponentOpsFlags_NoCopy = 8192;
+	public const int32 EComponentOpsFlags_NoDtor = 4096;
+	public const int32 EComponentOpsFlags_NoCtor = 1024;
 	public const int32 EComponentOpsFlags_HasMoveAssignDtor = 128;
 	public const int32 EComponentOpsFlags_HasMoveDtor = 64;
 	public const int32 EComponentOpsFlags_HasMoveCtor = 32;
