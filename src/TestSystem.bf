@@ -2,6 +2,7 @@ namespace BeefHush;
 
 using System;
 
+[RegisterSystem]
 public class SmallSystem : GameSystem {
 	private Query m_entityQuery;
 	private Hush.Vector3 m_position = .();

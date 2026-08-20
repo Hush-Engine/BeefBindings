@@ -15,20 +15,17 @@ struct SystemRegistryAttribute : Attribute, IComptimeTypeApply
 		String typeNameBuff = scope String(SystemInfo.MAX_SYS_NAME * 2);
         for (let t in Type.TypeDeclarations)
         {
-			typeNameBuff.Clear();
-			t.GetFullName(typeNameBuff);
 			int32 tId = (int32)t.TypeId;
 			if (tId <= 0) continue;
-			let typeRes = Type.GetTypeByName(typeNameBuff);
+			// TypeCode and custom-attribute data live in the declaration struct,
+			// written at parse time — safe to read during BfSystem_FixTypes before
+			// the resolved TypeInstance is fully populated.
+			if (t.TypeCode != .Object) continue;
+			if (!t.HasCustomAttribute<RegisterSystemAttribute>()) continue;
 
-			if (typeRes case .Err(let err)) {
-				continue;
-			}
-
-			Type actualType = typeRes.Value;
-
-            if (actualType.ImplementsInterface(typeof(GameSystem)))
-                systems.Add(t.ResolvedType);
+			let resolved = t.ResolvedType;
+			if (resolved == null) continue;
+            systems.Add(resolved);
         }
 
         let count = systems.Count;

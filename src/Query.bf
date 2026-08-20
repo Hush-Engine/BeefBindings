@@ -6,7 +6,7 @@ using Hush;
 
 public struct QueryBuilder {
 	const uint64 MAX_TERMS = 32; // Comes from flecs' docs
-	uint64 m_termCount;
+	uint8 m_termCount;
 	OpaqueQueryDescriptor m_opaqueDesc;
 
 	public this(params uint64[] ids) {

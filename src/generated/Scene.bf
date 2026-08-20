@@ -6,8 +6,12 @@ public static class Scene {
 		return BeefHush.EngineDependencies.Instance.FunctionPointerTable.HushFuncPtr_Hush__Scene__CreateRawQuery(self, componentsData, componentsSize, cacheMode);
 	}
 
-	public static uint64 Lookup(void* self, char8* keyData, uint64 keySize) {
-		return BeefHush.EngineDependencies.Instance.FunctionPointerTable.HushFuncPtr_Hush__Scene__Lookup(self, keyData, keySize);
+	public static uint64 Lookup(void* self, char8* tagData, uint64 tagSize) {
+		return BeefHush.EngineDependencies.Instance.FunctionPointerTable.HushFuncPtr_Hush__Scene__Lookup(self, tagData, tagSize);
+	}
+
+	public static void MarkComponentToggleableRaw(void* self, uint64 id) {
+		BeefHush.EngineDependencies.Instance.FunctionPointerTable.HushFuncPtr_Hush__Scene__MarkComponentToggleableRaw(self, id);
 	}
 
 	public static uint64 RegisterComponentRaw(void* self, ComponentTraits.ComponentInfo* desc) {
@@ -16,10 +20,6 @@ public static class Scene {
 
 	public static Entity EntityFromIdUnchecked(void* self, uint64 id) {
 		return BeefHush.EngineDependencies.Instance.FunctionPointerTable.HushFuncPtr_Hush__Scene__EntityFromIdUnchecked(self, id);
-	}
-
-	public static void RegisterComponentId(void* self, char8* nameData, uint64 nameSize, uint64 id) {
-		BeefHush.EngineDependencies.Instance.FunctionPointerTable.HushFuncPtr_Hush__Scene__RegisterComponentId(self, nameData, nameSize, id);
 	}
 
 	public static void DestroyEntity(void* self, Entity* entity) {

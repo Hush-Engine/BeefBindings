@@ -2,6 +2,10 @@ namespace BeefHush;
 
 using System;
 
+/// Apply this to any class that implements GameSystem to register it with the engine.
+[AttributeUsage(.Class)]
+public struct RegisterSystemAttribute : Attribute {}
+
 [CRepr]
 public struct SystemInfo {
 	public const int MAX_SYS_NAME = 64;

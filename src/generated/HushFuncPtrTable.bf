@@ -36,12 +36,13 @@ public struct HushFuncPtrTable {
 	public function Entity(void* self,char8* ,uint64 keySize) HushFuncPtr_Hush__Scene__CreateEntityWithKey;
 	public function void(void* self,uint64 ,uint64 ,EComponentObserverType ,function void(uint64 ,void*)) HushFuncPtr_Hush__Scene__AddComponentObserverRaw;
 	public function void(void* self,Entity*) HushFuncPtr_Hush__Scene__DestroyEntity;
-	public function void(void* self,char8* ,uint64 nameSize,uint64) HushFuncPtr_Hush__Scene__RegisterComponentId;
 	public function Entity(void* self,uint64) HushFuncPtr_Hush__Scene__EntityFromIdUnchecked;
 	public function uint64(void* self,ComponentTraits.ComponentInfo*) HushFuncPtr_Hush__Scene__RegisterComponentRaw;
-	public function uint64(void* self,char8* ,uint64 keySize) HushFuncPtr_Hush__Scene__Lookup;
+	public function void(void* self,uint64) HushFuncPtr_Hush__Scene__MarkComponentToggleableRaw;
+	public function uint64(void* self,char8* ,uint64 tagSize) HushFuncPtr_Hush__Scene__Lookup;
 	public function RawQuery(void* self,uint64* ,uint64 componentsSize,RawQuery.ECacheMode) HushFuncPtr_Hush__Scene__CreateRawQuery;
 	public function void*(void* self) HushFuncPtr_Hush__HushEngine__GetScene;
+	public function HushEngine.EError(void* self,void*) HushFuncPtr_Hush__HushEngine__LoadScene;
 	public function void(Transform* self,Vector3) HushFuncPtr_Hush__Transform__SetPosition;
 	public function bool(EKeyCode) HushFuncPtr_Hush__InputManager__IsKeyDown;
 	public function bool(EKeyCode) HushFuncPtr_Hush__InputManager__IsKeyDownThisFrame;
