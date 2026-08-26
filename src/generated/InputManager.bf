@@ -6,6 +6,14 @@ public static class InputManager {
 		BeefHush.EngineDependencies.Instance.FunctionPointerTable.HushFuncPtr_Hush__InputManager__SetCursorLock(lockMode);
 	}
 
+	public static Vector2 GetMouseAcceleration(void ) {
+		return BeefHush.EngineDependencies.Instance.FunctionPointerTable.HushFuncPtr_Hush__InputManager__GetMouseAcceleration(arg0);
+	}
+
+	public static Vector2 GetMousePosition(void ) {
+		return BeefHush.EngineDependencies.Instance.FunctionPointerTable.HushFuncPtr_Hush__InputManager__GetMousePosition(arg0);
+	}
+
 	public static bool FetchCharThisFrame(char8* outChar) {
 		return BeefHush.EngineDependencies.Instance.FunctionPointerTable.HushFuncPtr_Hush__InputManager__FetchCharThisFrame(outChar);
 	}

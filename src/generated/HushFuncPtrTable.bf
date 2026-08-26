@@ -6,6 +6,7 @@ public struct HushFuncPtrTable {
 	public function uint64(Entity* self,ComponentTraits.ComponentInfo*) HushFuncPtr_Hush__Entity__RegisterComponentRaw;
 	public function void*(Entity* self,uint64) HushFuncPtr_Hush__Entity__AddComponentRaw;
 	public function void*(Entity* self,uint64) HushFuncPtr_Hush__Entity__GetComponentRaw;
+	public function void*(Entity* self,uint64) HushFuncPtr_Hush__Entity__GetComponentConstRaw;
 	public function bool(Entity* self,uint64) HushFuncPtr_Hush__Entity__HasComponentRaw;
 	public function void*(Entity* self,uint64 ,uint64 ,bool*) HushFuncPtr_Hush__Entity__EmplaceComponentRaw;
 	public function bool(Entity* self,uint64) HushFuncPtr_Hush__Entity__RemoveComponentRaw;
@@ -44,11 +45,21 @@ public struct HushFuncPtrTable {
 	public function void*(void* self) HushFuncPtr_Hush__HushEngine__GetScene;
 	public function HushEngine.EError(void* self,void*) HushFuncPtr_Hush__HushEngine__LoadScene;
 	public function void(Transform* self,Vector3) HushFuncPtr_Hush__Transform__SetPosition;
+	public function Vector3*(Transform* self) HushFuncPtr_Hush__Transform__GetPosition;
+	public function Vector3(Transform* self) HushFuncPtr_Hush__Transform__GetPositionValue;
+	public function void(Transform* self,Vector3) HushFuncPtr_Hush__Transform__SetScale;
+	public function void(Transform* self,Vector3*) HushFuncPtr_Hush__Transform__SetEulerAngles;
+	public function Vector3(Transform* self) HushFuncPtr_Hush__Transform__GetEulerAngles;
+	public function Vector3(Transform* self) HushFuncPtr_Hush__Transform__Forward;
+	public function Vector3(Transform* self) HushFuncPtr_Hush__Transform__Up;
+	public function Vector3(Transform* self) HushFuncPtr_Hush__Transform__Right;
 	public function bool(EKeyCode) HushFuncPtr_Hush__InputManager__IsKeyDown;
 	public function bool(EKeyCode) HushFuncPtr_Hush__InputManager__IsKeyDownThisFrame;
 	public function bool(EKeyCode) HushFuncPtr_Hush__InputManager__IsKeyUp;
 	public function bool(EKeyCode) HushFuncPtr_Hush__InputManager__IsKeyHeld;
 	public function bool(EMouseButton) HushFuncPtr_Hush__InputManager__GetMouseButtonPressed;
 	public function bool(char8*) HushFuncPtr_Hush__InputManager__FetchCharThisFrame;
+	public function Vector2(void) HushFuncPtr_Hush__InputManager__GetMousePosition;
+	public function Vector2(void) HushFuncPtr_Hush__InputManager__GetMouseAcceleration;
 	public function void(ECursorLockMode) HushFuncPtr_Hush__InputManager__SetCursorLock;
 }
