@@ -3,6 +3,9 @@ using System;
 
 [CRepr]
 public struct HushFuncPtrTable {
+	public function void(Reflection.TypeInfo* self,uint64) HushFuncPtr_Hush__Reflection__TypeInfo__SetSize;
+	public function void(Reflection.TypeInfo* self,uint64) HushFuncPtr_Hush__Reflection__TypeInfo__SetAlignment;
+	public function uint8(void* self,Reflection.TypeInfo ,uint64) HushFuncPtr_Hush__Reflection__ReflectionDB__RegisterClass;
 	public function uint64(Entity* self,ComponentTraits.ComponentInfo*) HushFuncPtr_Hush__Entity__RegisterComponentRaw;
 	public function void*(Entity* self,uint64) HushFuncPtr_Hush__Entity__AddComponentRaw;
 	public function void*(Entity* self,uint64) HushFuncPtr_Hush__Entity__GetComponentRaw;
@@ -15,6 +18,8 @@ public struct HushFuncPtrTable {
 	public function int32(Entity* self) HushFuncPtr_Hush__Entity__GetChildCount;
 	public function void(Entity* self,Entity* ,Entity*) HushFuncPtr_Hush__Entity__AddRelationship;
 	public function uint64(Entity* self) HushFuncPtr_Hush__Entity__GetId;
+	public function void(Entity* self,char8* ,uint64 bufferSize) HushFuncPtr_Hush__Entity__GetKey;
+	public function void(Entity* self,char8* ,uint64 bufferSize) HushFuncPtr_Hush__Entity__QueryName;
 	public function bool(Entity* self) HushFuncPtr_Hush__Entity__IsAlive;
 	public function bool(RawQuery.QueryIterator* self) HushFuncPtr_Hush__RawQuery__QueryIterator__Next;
 	public function void(RawQuery.QueryIterator* self) HushFuncPtr_Hush__RawQuery__QueryIterator__Skip;
@@ -44,22 +49,44 @@ public struct HushFuncPtrTable {
 	public function RawQuery(void* self,uint64* ,uint64 componentsSize,RawQuery.ECacheMode) HushFuncPtr_Hush__Scene__CreateRawQuery;
 	public function void*(void* self) HushFuncPtr_Hush__HushEngine__GetScene;
 	public function HushEngine.EError(void* self,void*) HushFuncPtr_Hush__HushEngine__LoadScene;
+	public function bool(void* ,uint64 ,void*) HushFuncPtr_Hush__Modules__SetForeignSystemRuntimeOps;
+	public function bool(void* ,uint64 ,void*) HushFuncPtr_Hush__Modules__RegisterForeignSystem;
+	public function bool(void* ,void* ,uint64 ,uint64) HushFuncPtr_Hush__Modules__AddSystemToScene;
+	public function bool(void* ,uint64) HushFuncPtr_Hush__Modules__HasReflectedType;
+	public function bool(void* ,uint64 ,uint64*) HushFuncPtr_Hush__Modules__GetReflectedTypeOwner;
+	public function uint32(void* ,uint64) HushFuncPtr_Hush__Modules__GetReflectedTypeNameLength;
+	public function bool(void* ,uint64 ,char8* ,uint32) HushFuncPtr_Hush__Modules__CopyReflectedTypeName;
+	public function bool(void* ,uint64 ,char8* ,uint64) HushFuncPtr_Hush__Modules__HasReflectedTypeMetadata;
+	public function uint32(void* ,uint64 ,char8* ,uint64) HushFuncPtr_Hush__Modules__GetReflectedTypeMetadataValueLength;
+	public function bool(void* ,uint64 ,char8* ,uint64 ,char8* ,uint32) HushFuncPtr_Hush__Modules__CopyReflectedTypeMetadataValue;
 	public function void(Transform* self,Vector3) HushFuncPtr_Hush__Transform__SetPosition;
 	public function Vector3*(Transform* self) HushFuncPtr_Hush__Transform__GetPosition;
 	public function Vector3(Transform* self) HushFuncPtr_Hush__Transform__GetPositionValue;
 	public function void(Transform* self,Vector3) HushFuncPtr_Hush__Transform__SetScale;
+	public function Vector3(Transform* self) HushFuncPtr_Hush__Transform__GetScale;
+	public function void(Transform* self,Quat*) HushFuncPtr_Hush__Transform__SetRotationQuat;
+	public function Quat(Transform* self) HushFuncPtr_Hush__Transform__GetRotationQuat;
 	public function void(Transform* self,Vector3*) HushFuncPtr_Hush__Transform__SetEulerAngles;
 	public function Vector3(Transform* self) HushFuncPtr_Hush__Transform__GetEulerAngles;
 	public function Vector3(Transform* self) HushFuncPtr_Hush__Transform__Forward;
 	public function Vector3(Transform* self) HushFuncPtr_Hush__Transform__Up;
 	public function Vector3(Transform* self) HushFuncPtr_Hush__Transform__Right;
+	public function Matrix4(Transform* self) HushFuncPtr_Hush__Transform__GetTransformationMatrix;
+	public function void(Transform* self,float* ,uint64) HushFuncPtr_Hush__Transform__GetTransformationMatrixUnsafe;
+	public function Matrix4(Transform* self,Transform*) HushFuncPtr_Hush__Transform__XForm;
+	public function Matrix4(Transform* self,Transform*) HushFuncPtr_Hush__Transform__InvXForm;
 	public function bool(EKeyCode) HushFuncPtr_Hush__InputManager__IsKeyDown;
 	public function bool(EKeyCode) HushFuncPtr_Hush__InputManager__IsKeyDownThisFrame;
 	public function bool(EKeyCode) HushFuncPtr_Hush__InputManager__IsKeyUp;
 	public function bool(EKeyCode) HushFuncPtr_Hush__InputManager__IsKeyHeld;
 	public function bool(EMouseButton) HushFuncPtr_Hush__InputManager__GetMouseButtonPressed;
 	public function bool(char8*) HushFuncPtr_Hush__InputManager__FetchCharThisFrame;
-	public function Vector2(void) HushFuncPtr_Hush__InputManager__GetMousePosition;
-	public function Vector2(void) HushFuncPtr_Hush__InputManager__GetMouseAcceleration;
+	public function Vector2() HushFuncPtr_Hush__InputManager__GetMousePosition;
+	public function Vector2() HushFuncPtr_Hush__InputManager__GetMouseAcceleration;
 	public function void(ECursorLockMode) HushFuncPtr_Hush__InputManager__SetCursorLock;
+	public function Vector3(Camera* self,Matrix4 ,Vector2 ,Vector3*) HushFuncPtr_Hush__Camera__ScreenToWorldPos;
+	public function Vector3(Camera* self,float* ,Vector2 ,Vector3*) HushFuncPtr_Hush__Camera__ScreenToWorldPosUnsafe;
+	public function Vector3(Camera* self,Vector3 ,Vector3 ,float) HushFuncPtr_Hush__Camera__ProjectPlanePosition;
+	public function float(Camera* self) HushFuncPtr_Hush__Camera__GetFarPlane;
+	public function void(MeshReference* self,Vector3* ,Vector3*) HushFuncPtr_Hush__MeshReference__CalculateBounds;
 }
